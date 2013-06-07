@@ -17,6 +17,10 @@ class EmployeeController {
   @ResponseBody
   def showEmployees(): java.util.List[Employee] = employeeService.listEmployees
 
+  @RequestMapping(value = Array("/employee/salary"), method = Array(GET))
+  @ResponseBody
+  def showTotalSalary(): ResultMessage = SalaryResultMessage("Total salary", employeeService.totalSalary)
+
   @RequestMapping(value = Array("/employee"), method = Array(POST))
   @ResponseBody
   def addNewEmployee(@RequestBody rawEmployee: String): ResultMessage = {
@@ -34,6 +38,7 @@ sealed trait ResultMessage {
   val message: String
 }
 case class EmployeeResultMessage(@BeanProperty message: String, @BeanProperty document: Employee) extends ResultMessage
+case class SalaryResultMessage(@BeanProperty message: String, @BeanProperty total: Double) extends ResultMessage
 
 sealed trait ErrorMessage extends ResultMessage
 case class EmployeeErrorMessage(@BeanProperty message: String) extends ErrorMessage

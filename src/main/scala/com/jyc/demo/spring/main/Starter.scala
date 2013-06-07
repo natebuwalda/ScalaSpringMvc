@@ -10,9 +10,9 @@ import org.springframework.web.context.ContextLoaderListener
 object Starter extends App {
   val server = new Server(8081)
 
-  val servletHolder = new ServletHolder(new DispatcherServlet());
-  servletHolder.setInitParameter("contextClass", classOf[AnnotationConfigWebApplicationContext].getName);
-  servletHolder.setInitParameter("contextConfigLocation", classOf[WebConfig].getName);
+  val servletHolder = new ServletHolder(new DispatcherServlet())
+  servletHolder.setInitParameter("contextClass", classOf[AnnotationConfigWebApplicationContext].getName)
+  servletHolder.setInitParameter("contextConfigLocation", classOf[WebConfig].getName)
 
   val context = new ServletContextHandler()
   context.addEventListener(new ContextLoaderListener())
